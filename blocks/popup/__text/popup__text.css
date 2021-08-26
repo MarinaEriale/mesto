@@ -5,7 +5,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   box-sizing: border-box;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -14,9 +14,15 @@
 
 @media screen and (max-width: 540px) {
   .popup__text {
-    font-size: 14px;
-    line-height: 17px;
     width: 238px;
     margin: 0 22px;
   }
+}
+
+.popup__text:nth-of-type(1) {
+  margin-bottom: 30px;
+}
+
+.popup__text:nth-of-type(2) {
+  margin-bottom: 45px;
 }

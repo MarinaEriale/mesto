@@ -4,7 +4,6 @@
   padding: 14px 64px;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
-  align-self: center;
 }
 
 @media screen and (max-width: 420px) {
@@ -13,7 +12,4 @@
     width: 16px;
     padding: 15px 131px;
   }
-}
-.profile__add:hover {
-  opacity: .6;
 }

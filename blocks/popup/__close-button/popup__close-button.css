@@ -10,7 +10,3 @@
     height: 20px;
   }
 }
-
-.popup__close-button:hover {
-  opacity: .6;
-}

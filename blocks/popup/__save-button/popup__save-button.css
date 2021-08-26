@@ -12,6 +12,7 @@
   height: 50px;
   margin: 0 36px 37px 36px;
   box-sizing: border-box;
+  border: 0;
 }
 
 @media screen and (max-width: 540px) {
@@ -26,4 +27,6 @@
 
 .popup__save-button:hover {
   background: rgba(0, 0, 0, .8);
+  cursor: pointer;
+  transition: opacity .8s ease-in-out;
 }
