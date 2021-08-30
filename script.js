@@ -26,8 +26,12 @@ function editProfile () {
   jobInput.value = jobProfile.textContent;
 }
 
-openPopupButton.addEventListener('click', togglePopup);
-openPopupButton.addEventListener('click', editProfile);
+function openPopup () {
+  togglePopup();
+  editProfile ();
+}
+
+openPopupButton.addEventListener('click', openPopup);
 closePopupButton.addEventListener('click', togglePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
