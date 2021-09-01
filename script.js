@@ -28,7 +28,7 @@ function editProfile () {
 
 function openPopup () {
   togglePopup();
-  editProfile ();
+  editProfile();
 }
 
 openPopupButton.addEventListener('click', openPopup);
