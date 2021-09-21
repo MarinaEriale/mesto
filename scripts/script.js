@@ -144,3 +144,18 @@ const placeCloseButton = placePopup.querySelector('.popup__close-popup');
 placeCloseButton.addEventListener('click', function(){
   closePopup(placePopup);
 });
+
+document.addEventListener('keydown', function(){
+  const key = event.key;
+  const currentPopup = document.querySelector('.popup_opened');
+    if (key === "Escape") {
+      closePopup(currentPopup);
+    }
+});
+
+document.addEventListener('click', function() {
+  const currentPopup = document.querySelector('.popup_opened');
+  currentPopup.addEventListener('click', function() {
+    closePopup(currentPopup);
+  });
+});
