@@ -83,6 +83,11 @@ initialCards.forEach(function(element) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', function(event) {
+    if (event.target === popup) {
+      closePopup(popup);
+    }
+  });
 }
 
 function submitProfileForm (event) {
@@ -151,11 +156,4 @@ document.addEventListener('keydown', function(){
     if (key === "Escape") {
       closePopup(currentPopup);
     }
-});
-
-document.addEventListener('click', function() {
-  const currentPopup = document.querySelector('.popup_opened');
-  currentPopup.addEventListener('click', function() {
-    closePopup(currentPopup);
-  });
 });
