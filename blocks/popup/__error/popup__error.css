@@ -6,4 +6,9 @@
   color: #FF0000;
   display: none;
   margin-left: 36px;
+  margin-top: -25px;
 }
+
+.popup__error:last-of-type {
+  margin-top: -40px;
+  margin-bottom: 30px;
