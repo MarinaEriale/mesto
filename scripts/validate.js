@@ -33,6 +33,7 @@ const hasNoInputValues = (inputList) => {
 
 const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
 };
 
 const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
