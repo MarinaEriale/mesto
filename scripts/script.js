@@ -2,7 +2,7 @@ const openPopupButton = document.querySelector('.profile__open-popup');
 const profilePopup = document.querySelector('.popup_type_profile');
 const closePopupButton = document.querySelector('.popup__close-popup');
 
-const profileForm = document.querySelector('.popup__container');
+const profileForm = document.querySelector('.popup__edit-form');
 
 const nameInput = profileForm.querySelector('.popup__text_type_name');
 const jobInput = profileForm.querySelector('.popup__text_type_profession');
@@ -47,6 +47,7 @@ const templateContainer = document.getElementById('elements-container');
 
    cardName.textContent = element.name;
    cardImage.setAttribute('src', element.link);
+   cardImage.setAttribute('alt', element.name);
 
    const likeButton = card.querySelector('.element__like-button');
 
@@ -70,6 +71,7 @@ const templateContainer = document.getElementById('elements-container');
     cardImage.addEventListener('click', function(event){
       placeImage.src = event.target.src;
       placeName.textContent = event.target.closest('.element').querySelector('.element__text').textContent;
+      placeImage.setAttribute('alt', placeName.textContent);
       openPopup(placePopup);
     });
 
