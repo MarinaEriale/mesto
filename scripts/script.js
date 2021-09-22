@@ -10,6 +10,7 @@ const jobInput = profileForm.querySelector('.popup__text_type_profession');
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__profession');
 
+const placePopup = document.querySelector('.popup_type_place');
 
 const initialCards = [
   {
@@ -64,7 +65,7 @@ const templateContainer = document.getElementById('elements-container');
       deleteElement.remove();
     });
 
-    const placePopup = document.querySelector('.popup_type_place');
+
     const placeImage = placePopup.querySelector('.popup__image');
     const placeName = placePopup.querySelector('.popup__image-name');
 
@@ -141,11 +142,14 @@ function submitCardForm (event) {
   const element = {name: placeName.value, link: placeLink.value};
   templateContainer.prepend(createCard(element));
   closePopup(popupCard);
+  saveButton.setAttribute('disabled', true);
+  saveButton.classList.add('popup__save-button_disabled');
+  placeName.value = "";
+  placeLink.value = "";
 }
 
 cardForm.addEventListener('submit', submitCardForm);
 
-const placePopup = document.querySelector('.popup_type_place');
 const placeCloseButton = placePopup.querySelector('.popup__close-popup');
 
 placeCloseButton.addEventListener('click', function(){

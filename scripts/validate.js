@@ -38,6 +38,7 @@ const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
 
 const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
   buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
 };
 
 const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiveButtonClass) => {
