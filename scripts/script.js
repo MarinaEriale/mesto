@@ -88,12 +88,8 @@ initialCards.forEach(function(element) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('click', function(event) {
-    if (event.target === popup) {
-      closePopup(popup);
-    }
-  });
-  document.addEventListener('keydown',  closeByEsc)
+  popup.addEventListener('click', closeByClick);
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function submitProfileForm (event) {
@@ -116,6 +112,7 @@ function openProfilePopup () {
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown',  closeByEsc);
+  popup.removeEventListener('click', closeByClick);
 }
 
 openPopupButton.addEventListener('click', openProfilePopup);
@@ -160,19 +157,17 @@ placeCloseButton.addEventListener('click', function(){
   closePopup(placePopup);
 });
 
-/*document.addEventListener('keydown', function(){
-  const key = event.key;
-  const currentPopup = document.querySelector('.popup_opened');
-    if (key === "Escape") {
-      closePopup(currentPopup);
-    }
-});*/
-
-
-
 function closeByEsc(evt) {
   if (event.key === ESC_CODE) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 }
+
+function closeByClick(evt) {
+  if (event.target.classList.contains('popup')) {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
+    }
+}
+
