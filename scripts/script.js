@@ -12,6 +12,8 @@ const jobProfile = document.querySelector('.profile__profession');
 
 const placePopup = document.querySelector('.popup_type_place');
 
+const ESC_CODE = 'Escape';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -91,6 +93,7 @@ function openPopup(popup) {
       closePopup(popup);
     }
   });
+  document.addEventListener('keydown',  closeByEsc)
 }
 
 function submitProfileForm (event) {
@@ -112,6 +115,7 @@ function openProfilePopup () {
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown',  closeByEsc);
 }
 
 openPopupButton.addEventListener('click', openProfilePopup);
@@ -156,10 +160,19 @@ placeCloseButton.addEventListener('click', function(){
   closePopup(placePopup);
 });
 
-document.addEventListener('keydown', function(){
+/*document.addEventListener('keydown', function(){
   const key = event.key;
   const currentPopup = document.querySelector('.popup_opened');
     if (key === "Escape") {
       closePopup(currentPopup);
     }
-});
+});*/
+
+
+
+function closeByEsc(evt) {
+  if (event.key === ESC_CODE) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
