@@ -52,7 +52,7 @@
         <img src="./image/Close_Icon.svg" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__edit-form" name="personal-info" novalidate>
+      <form class="popup__edit-form" id="personal-info" name="personal-info" novalidate>
         <input type="text" id="user-name" name="name" required placeholder="" class="popup__text popup__text_type_name" minlength="2" maxlength="40">
         <span id="user-name-error" class="popup__error"></span>
         <input type="text" id="about" name="profession" required placeholder="" class="popup__text popup__text_type_profession" minlength="2" maxlength="200">
@@ -67,7 +67,7 @@
         <img src="./image/Close_Icon.svg" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
       </button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__edit-form" name="place-info" novalidate>
+      <form class="popup__edit-form" id="place-info" name="place-info" novalidate>
         <input type="text" id="name-card" name="name" required placeholder="Название" class="popup__text popup__text_type_name" minlength="2" maxlength="30">
         <span id="name-card-error" class="popup__error"></span>
         <input type="url" id="link" name="email" required placeholder="Ссылка на картинку" class="popup__text popup__text_type_link">
@@ -85,7 +85,9 @@
       <p class="popup__image-name"></p>
     </div>
   </div>
-  <script src="./scripts/script.js"></script>
-  <script src="./scripts/validate.js"></script>
+  <script type="module" src="./scripts/card.js"></script>
+  <script type="module" src="./scripts/FormValidator.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
+  <!-- <script src="./scripts/validate.js"></script> -->
 </body>
 </html>
