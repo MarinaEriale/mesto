@@ -1,5 +1,5 @@
 export class Card {
-  constructor(id, options, events) {
+  constructor(id, options, handlers) {
     this._rootNode = document.getElementById(id).content.cloneNode(true);
     this._nameNode = this._rootNode.querySelector('.element__text');
     this._imageNode = this._rootNode.querySelector('.element__image');
@@ -19,8 +19,8 @@ export class Card {
     });
 
     this._imageNode.addEventListener('click', () => {
-       if (events && typeof events.onImageClick === 'function') {
-        events.onImageClick();
+       if (handlers && typeof handlers.onImageClick === 'function') {
+        handlers.onImageClick();
       }
     })
   }
@@ -34,7 +34,7 @@ export class Card {
     this._imageNode.setAttribute('src', link);
   }
 
-  getTemplate() {
+  generateCard() {
     return this._rootNode;
   }
 

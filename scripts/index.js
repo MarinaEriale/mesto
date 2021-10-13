@@ -1,4 +1,4 @@
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
 const openPopupButton = document.querySelector(".profile__open-popup");
@@ -67,7 +67,7 @@ initialCards.forEach(function (element) {
       openPopup(placePopup);
     },
   });
-  const template = card.getTemplate();
+  const template = card.generateCard();
   // const template = createCard(element);
   templateContainer.append(template);
 });
@@ -135,7 +135,7 @@ function submitCardForm(event) {
         placeImage.setAttribute("alt", element.name);
         openPopup(placePopup);
       },
-    }).getTemplate()
+    }).generateCard()
   );
 
   closePopup(popupCard);
@@ -154,14 +154,14 @@ placeCloseButton.addEventListener("click", function () {
 });
 
 function closeByEsc(evt) {
-  if (event.key === ESC_CODE) {
+  if (evt.key === ESC_CODE) {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
 }
 
 function closeByClick(evt) {
-  if (event.target.classList.contains("popup")) {
+  if (evt.target.classList.contains("popup")) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
