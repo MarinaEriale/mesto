@@ -52,24 +52,24 @@ export class FormValidator {
     });
   };
 
-  _disableSubmitButton = (buttonElement) => {
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute("disabled", true);
+  _disableSubmitButton = () => {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", true);
   };
 
-  _enableSubmitButton = (buttonElement) => {
-    buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute("disabled");
-  };
+  _enableSubmitButton = () => {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute("disabled");
+  }
 
   _toggleButtonState = () => {
     if (
-      this._hasInvalidInput(this._inputList) ||
-      this._hasNoInputValues(this._inputList)
+      this._hasInvalidInput() ||
+      this._hasNoInputValues()
     ) {
-      this._disableSubmitButton(this._buttonElement);
+      this._disableSubmitButton();
     } else {
-      this._enableSubmitButton(this._buttonElement);
+      this._enableSubmitButton();
     }
   };
 
