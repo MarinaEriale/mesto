@@ -58,7 +58,7 @@ const config = {
   errorClass: 'popup__error_visible'
 };
 
-initialCards.forEach(function (element) {
+function createCard (element) {
   const card = new Card("elements-template", element, {
     onImageClick: () => {
       placeImage.src = element.link;
@@ -66,10 +66,15 @@ initialCards.forEach(function (element) {
       placeImage.setAttribute("alt", element.name);
       openPopup(placePopup);
     },
-  });
-  const template = card.generateCard();
-  // const template = createCard(element);
-  templateContainer.append(template);
+  }).generateCard();
+
+   return card;
+}
+
+initialCards.forEach(function (card, element) {
+
+  createCard(element);
+  templateContainer.append(card);
 });
 
 function openPopup(popup) {

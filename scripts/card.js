@@ -7,15 +7,15 @@ export class Card {
     this._deleteButton = this._rootNode.querySelector('.element__delete-button');
     this._elementNode = this._rootNode.querySelector('.element');
 
-    this.setName(options.name);
-    this.setLink(options.link);
+    this._setName(options.name);
+    this._setLink(options.link);
 
     this._likeButton.addEventListener('click', () => {
-      this.toggleLike();
+      this._toggleLike();
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this.destroy();
+      this._destroy();
     });
 
     this._imageNode.addEventListener('click', () => {
@@ -25,12 +25,12 @@ export class Card {
     })
   }
 
-  setName(name) {
+  _setName(name) {
     this._nameNode.textContent = name;
     this._imageNode.setAttribute('alt', name);
   }
 
-  setLink(link) {
+  _setLink(link) {
     this._imageNode.setAttribute('src', link);
   }
 
@@ -38,11 +38,11 @@ export class Card {
     return this._rootNode;
   }
 
-  toggleLike() {
+  _toggleLike() {
     this._likeButton.classList.toggle('element__like-button_active');
   }
 
-  destroy() {
+  _destroy() {
     this._elementNode.remove();
   }
 }
