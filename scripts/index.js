@@ -68,7 +68,7 @@ function createCard (element) {
     },
   }).generateCard();
 
-   return card;
+    return card;
 }
 
 initialCards.forEach(function (card) {
@@ -120,6 +120,13 @@ const cardForm = popupCard.querySelector(".popup__edit-form");
 const placeName = popupCard.querySelector(".popup__text_type_name");
 const placeLink = popupCard.querySelector(".popup__text_type_link");
 
+const formElement = document.querySelector('.popup__edit-form');
+
+const validatedProfileForm = new FormValidator(config, document.querySelector('#personal-info'));
+
+const validatedAddForm = new FormValidator(config, document.querySelector('#place-info'));
+
+
 openAddPopupButton.addEventListener("click", function () {
   openPopup(popupCard);
 });
@@ -133,11 +140,12 @@ function submitCardForm(event) {
   templateContainer.prepend(createCard(element));
 
   closePopup(popupCard);
-  saveButton.setAttribute("disabled", true);
-  saveButton.classList.add("popup__save-button_disabled");
-  placeName.value = "";
-  placeLink.value = "";
-}
+  validatedAddForm.resetValidation();
+  // saveButton.setAttribute("disabled", true);
+  // saveButton.classList.add("popup__save-button_disabled");
+  // placeName.value = "";
+  // placeLink.value = "";
+};
 
 cardForm.addEventListener("submit", submitCardForm);
 
@@ -158,10 +166,8 @@ function closeByClick(evt) {
   closePopup(evt.target);
 }
 
-const formElement = document.querySelector('.popup__edit-form');
-
-const validatedProfileForm = new FormValidator(config, document.querySelector('#personal-info'));
 validatedProfileForm.enableValidation();
 
-const validatedAddForm = new FormValidator(config, document.querySelector('#place-info'));
 validatedAddForm.enableValidation();
+
+

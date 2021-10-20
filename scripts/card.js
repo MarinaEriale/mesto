@@ -10,19 +10,13 @@ export class Card {
     this._setName(options.name);
     this._setLink(options.link);
 
-    this._likeButton.addEventListener('click', () => {
-      this._toggleLike();
-    });
-
-    this._deleteButton.addEventListener('click', () => {
-      this._destroy();
-    });
-
     this._imageNode.addEventListener('click', () => {
-       if (handlers && typeof handlers.onImageClick === 'function') {
-        handlers.onImageClick();
-      }
-    })
+      if (handlers && typeof handlers.onImageClick === 'function') {
+       handlers.onImageClick();
+     }
+   })
+
+    this._setEventListeners();
   }
 
   _setName(name) {
@@ -45,5 +39,17 @@ export class Card {
   _destroy() {
     this._elementNode.remove();
   }
+
+  _setEventListeners() {
+    this._likeButton.addEventListener('click', () => {
+      this._toggleLike();
+    });
+
+    this._deleteButton.addEventListener('click', () => {
+      this._destroy();
+    });
+
+  }
+
 }
 

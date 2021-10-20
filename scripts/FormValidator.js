@@ -46,6 +46,13 @@ export class FormValidator {
     });
   };
 
+  _hideInvalidInput = (inputElement) => {
+    const invalidInput = this._formElement.querySelector(
+      `#${inputElement.id}`
+    );
+    invalidInput.value = "";
+  }
+
   _hasNoInputValues = () => {
     return this._inputList.some((inputElement) => {
       return inputElement.value.length === 0;
@@ -89,5 +96,14 @@ export class FormValidator {
 
   enableValidation = () => {
     this._setEventListeners();
-  };
+  }
+
+  resetValidation() {
+   this._toggleButtonState();  // <== управляем кнопкой ==
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+      this._hideInvalidInput(inputElement); // <==очищаем ошибки ==
+    });
+  }
 }
