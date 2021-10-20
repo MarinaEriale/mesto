@@ -71,10 +71,8 @@ function createCard (element) {
    return card;
 }
 
-initialCards.forEach(function (card, element) {
-
-  createCard(element);
-  templateContainer.append(card);
+initialCards.forEach(function (card) {
+  templateContainer.append(createCard(card));
 });
 
 function openPopup(popup) {
@@ -132,16 +130,7 @@ closeAddPopupButton.addEventListener("click", function () {
 function submitCardForm(event) {
   event.preventDefault();
   const element = { name: placeName.value, link: placeLink.value };
-  templateContainer.prepend(
-    new Card("elements-template", element, {
-      onImageClick: () => {
-        placeImage.src = element.link;
-        placeName1.textContent = element.name;
-        placeImage.setAttribute("alt", element.name);
-        openPopup(placePopup);
-      },
-    }).generateCard()
-  );
+  templateContainer.prepend(createCard(element));
 
   closePopup(popupCard);
   saveButton.setAttribute("disabled", true);
@@ -166,10 +155,7 @@ function closeByEsc(evt) {
 }
 
 function closeByClick(evt) {
-  if (evt.target.classList.contains("popup")) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
+  closePopup(evt.target);
 }
 
 const formElement = document.querySelector('.popup__edit-form');
