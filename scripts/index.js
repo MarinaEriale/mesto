@@ -129,9 +129,11 @@ const validatedAddForm = new FormValidator(config, document.querySelector('#plac
 
 openAddPopupButton.addEventListener("click", function () {
   openPopup(popupCard);
+  validatedAddForm.resetValidation();
 });
 closeAddPopupButton.addEventListener("click", function () {
   closePopup(popupCard);
+  validatedAddForm.resetValidation();
 });
 
 function submitCardForm(event) {
@@ -140,11 +142,8 @@ function submitCardForm(event) {
   templateContainer.prepend(createCard(element));
 
   closePopup(popupCard);
+
   validatedAddForm.resetValidation();
-  // saveButton.setAttribute("disabled", true);
-  // saveButton.classList.add("popup__save-button_disabled");
-  // placeName.value = "";
-  // placeLink.value = "";
 };
 
 cardForm.addEventListener("submit", submitCardForm);
