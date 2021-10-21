@@ -46,13 +46,6 @@ export class FormValidator {
     });
   };
 
-  _hideInvalidInput = (inputElement) => {
-    const invalidInput = this._formElement.querySelector(
-      `#${inputElement.id}`
-    );
-    invalidInput.value = "";
-  }
-
   _hasNoInputValues = () => {
     return this._inputList.some((inputElement) => {
       return inputElement.value.length === 0;
@@ -99,11 +92,11 @@ export class FormValidator {
   }
 
   resetValidation() {
+   this._formElement.reset()
    this._toggleButtonState();  // <== управляем кнопкой ==
 
     this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-      this._hideInvalidInput(inputElement); // <==очищаем ошибки ==
+      this._hideInputError(inputElement); // <==очищаем ошибки ==
     });
   }
 }
