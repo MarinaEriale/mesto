@@ -133,7 +133,6 @@ openAddPopupButton.addEventListener("click", function () {
 });
 closeAddPopupButton.addEventListener("click", function () {
   closePopup(popupCard);
-  validatedAddForm.resetValidation();
 });
 
 function submitCardForm(event) {
