@@ -1,9 +1,13 @@
-import { Card } from "../scripts/Card.js";
-import { FormValidator } from "../scripts/FormValidator.js";
-import { Section } from "../scripts/Section.js";
-import { PopupWithForm } from "../scripts/popupWithForm.js";
-import { PopupWithImage } from "../scripts/popupWithImage.js";
-import { UserInfo } from "../scripts/userInfo.js";
+import './index.css';
+
+import { Card } from "../components/card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { UserInfo } from "../components/UserInfo.js";
+
+
 
 const initialCards = [
   {
@@ -32,6 +36,8 @@ const initialCards = [
   },
 ];
 
+const initialCardsReversed = initialCards.reverse();
+
 const config = {
   formSelector: '.popup__edit-form',
   inputSelector: '.popup__text',
@@ -47,8 +53,14 @@ const validatedAddForm = new FormValidator(config, document.querySelector('#plac
 
 const containerSelector = '#elements-container';
 
+const nameInput = document.querySelector(".popup__text_type_name");
+const jobInput = document.querySelector(".popup__text_type_profession");
+
+const nameProfile = document.querySelector(".profile__name");
+const jobProfile = document.querySelector(".profile__profession");
+
 const cardList = new Section({
-  items: initialCards,
+  items: initialCardsReversed,
   renderer: (element) => {
     cardList.addItem(createCard(element));
 
@@ -56,40 +68,48 @@ const cardList = new Section({
 },
 containerSelector
 );
+const popupImage = document.querySelector('.popup_type_place')
+
+const imagePopup = new PopupWithImage(popupImage);
 
 
-const imagePopup = new PopupWithImage('.popup_type_place');
+const inputNameProfile = document.querySelector('.profile__name')
+const inputProfession = document.querySelector('.profile__profession')
+const userInfo = new UserInfo(inputNameProfile, inputProfession);
 
-const userInfo = new UserInfo();
+const profilePopup = document.querySelector('.popup_type_profile')
 
-const userInfoPopup = new PopupWithForm('.popup_type_profile', (data) => {
+const userInfoPopup = new PopupWithForm(profilePopup, (data) => {
   userInfo.setUserInfo(data);
 });
 
-// const newCardPopup = new PopupWithForm('.popup_type_add', (data) => {
-//   cardList.addItem(createCard(data));
-// });
 
 const popupType = document.querySelector('.popup_type_add');
 
-const newCardPopup = new PopupWithForm({
-  popupSelector: popupType,
-  handleFormSubmit: (formValues) => {
+const newCardPopup = new PopupWithForm(popupType, (formValues) => {
     // при создании экземпляра UserCard передаём
     // ему объект с данными формы
-    const card = new Card(formValues);
+    const card = new Card(formValues,
+      {handlers: () => {
+        imagePopup.open(formValues.name, formValues.link)
+      }
+
+    });
 
     const cardElement = card.generateCard();
 
     cardList.addItem(cardElement);
   }
-});
+);
 
 
 function createCard(element) {
-  const card = new Card(element);
+  const card = new Card(element, {
+    handlers: () => {
+      imagePopup.open(element.name, element.link)
+    }
+  });
   const cardElement = card.generateCard();
-
   return cardElement;
 }
 
@@ -99,17 +119,6 @@ validatedProfileForm.enableValidation();
 
 validatedAddForm.enableValidation();
 
-
-
-// const createNewCard = () => {
-//   const card = new Card(({ name, link }) => {
-//     imagePopup.open({ name, link });
-//   });
-//   return card;
-// }; //функция создания новой карточки из данных
-
-
-
 imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
 newCardPopup.setEventListeners();
@@ -117,9 +126,10 @@ newCardPopup.setEventListeners();
 newCardPopup.open();
 newCardPopup.close();
 
-
 const openAddPopupButton = document.getElementById("profile__add-button");
 const closeAddPopupButton = document.getElementById("popup__type_add-close");
+
+const closeImagePopupButton = document.getElementById("popup_type_place-close");
 
 openAddPopupButton.addEventListener('click', () => {
   newCardPopup.open();
@@ -133,6 +143,8 @@ const openPopupButton = document.querySelector(".profile__open-popup");
 const closePopupButton = document.getElementById('popup_profile_close-button');
 
 openPopupButton.addEventListener('click', () => {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
   userInfoPopup.open();
 })
 
@@ -140,3 +152,6 @@ closePopupButton.addEventListener('click', () => {
   userInfoPopup.close();
 })
 
+closeImagePopupButton.addEventListener('click', () => {
+  imagePopup.close();
+})

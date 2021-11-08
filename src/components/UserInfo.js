@@ -11,9 +11,9 @@ export class UserInfo {
     }
   }
 
-  setUserInfo() {
-    this._name.textContent = userInfoPopup.profile_name;
-    this._profession.textContent = userInfoPopup.profile_profession
+  setUserInfo(userInfoPopup) {
+    this._name.textContent = userInfoPopup.name;
+    this._profession.textContent = userInfoPopup.profession
 
   }
 

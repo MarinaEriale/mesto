@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <title>Mesto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body class="page">
   <header class="header">
-    <img src="./image/logo.svg" alt="Крупная надпись латиницей место и маленькая надпись Russia сразу над правым верним углом большей надписи" class="logo">
+    <img src="<%=require('./image/logo.svg')%>" alt="Крупная надпись латиницей место и маленькая надпись Russia сразу над правым верхним углом большей надписи" class="logo">
   </header>
   <main>
     <section class="profile">
       <div class="profile__personal">
-        <img src="./image/Avatar.jpg" alt="Фотография Жака-Ива Кусто" class="profile__avatar">
+        <img src="<%=require('./image/Avatar.jpg')%>" alt="Фотография Жака-Ива Кусто" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" class="profile__open-popup">
-            <img src="./image/Vector.svg" alt="Значок редактирования - карандаш" class="profile__edit">
+            <img src="<%=require('./image/Vector.svg')%>" alt="Значок редактирования - карандаш" class="profile__edit">
           </button>
           <p class="profile__profession">Исследователь океана</p>
         </div>
       </div>
       <button type="button" class="profile__add-button" id="profile__add-button">
-        <img src="./image/Vector_plus.svg" alt="Значок добавления - плюс" class="profile__add">
+        <img src="<%=require('./image/Vector_plus.svg')%>" alt="Значок добавления - плюс" class="profile__add">
       </button>
     </section>
     <section class="elements" id="elements">
@@ -32,7 +32,7 @@
           <div class="element">
             <img class="element__image">
             <button type="button" class="element__delete-button">
-              <img src="./image/vector_delete.svg" alt="Мусорная корзина - значок удаления" class="element__delete">
+              <img src="<%=require('./image/vector_delete.svg')%>" alt="Мусорная корзина - значок удаления" class="element__delete">
             </button>
             <div class="element__info">
               <h2 class="element__text"></h2>
@@ -49,7 +49,7 @@
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <button type="button" class="popup__close-popup">
-        <img src="./image/Close_Icon.svg" alt="Белый крестик - значок закрытия формы" class="popup__close-button" id="popup_profile_close-button">
+        <img src="<%=require('./image/Close_Icon.svg')%>" alt="Белый крестик - значок закрытия формы" class="popup__close-button" id="popup_profile_close-button">
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__edit-form" id="personal-info" name="personal-info" novalidate>
@@ -64,13 +64,13 @@
   <div class="popup popup_type_add" id="popup_type_add">
     <div class="popup__container popup__container_type_add">
       <button type="button" class="popup__close-popup" id="popup__type_add-close">
-        <img src="./image/Close_Icon.svg" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
+        <img src="<%=require('./image/Close_Icon.svg')%>" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
       </button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__edit-form" id="place-info" name="place-info" novalidate>
         <input type="text" id="name-card" name="name" required placeholder="Название" class="popup__text popup__text_type_name" minlength="2" maxlength="30">
         <span id="name-card-error" class="popup__error"></span>
-        <input type="url" id="link" name="email" required placeholder="Ссылка на картинку" class="popup__text popup__text_type_link">
+        <input type="url" id="link" name="link" required placeholder="Ссылка на картинку" class="popup__text popup__text_type_link">
         <span id="link-error" class="popup__error"></span>
         <button type="submit" class="popup__save-button">Создать</button>
       </form>
@@ -78,15 +78,15 @@
   </div>
   <div class="popup popup_type_place">
     <div class="popup__content">
-      <button type="button" class="popup__close-popup">
-        <img src="./image/Close_Icon.svg" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
+      <button type="button" class="popup__close-popup" id="popup_type_place-close">
+        <img src="<%=require('./image/Close_Icon.svg')%>" alt="Белый крестик - значок закрытия формы" class="popup__close-button">
       </button>
       <img class="popup__image">
       <p class="popup__image-name"></p>
     </div>
   </div>
-  <script type="module" src="./scripts/card.js"></script>
+  <!-- <script type="module" src="./scripts/card.js"></script>
   <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./src/index.js"></script>
+  <script type="module" src="./src/index.js"></script> -->
   </body>
 </html>

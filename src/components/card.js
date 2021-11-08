@@ -1,20 +1,15 @@
 export class Card {
-  constructor(options, handlers) {
+  constructor(options, {handlers}) {
     this._rootNode = document.getElementById("elements-template").content.cloneNode(true);
     this._nameNode = this._rootNode.querySelector('.element__text');
     this._imageNode = this._rootNode.querySelector('.element__image');
     this._likeButton = this._rootNode.querySelector('.element__like-button');
     this._deleteButton = this._rootNode.querySelector('.element__delete-button');
     this._elementNode = this._rootNode.querySelector('.element');
+    this._handlers = handlers
 
     this._setName(options.name);
     this._setLink(options.link);
-
-    this._imageNode.addEventListener('click', () => {
-      if (handlers && typeof handlers.onImageClick === 'function') {
-       handlers.onImageClick();
-     }
-   })
 
     this._setEventListeners();
   }
@@ -41,6 +36,7 @@ export class Card {
   }
 
   _setEventListeners() {
+    this,this._imageNode.addEventListener('click', this._handlers)
     this._likeButton.addEventListener('click', () => {
       this._toggleLike();
     });

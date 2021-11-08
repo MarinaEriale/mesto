@@ -11,18 +11,18 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     // создаём пустой объект
-    const formValues = {};
+    this._formValues = {};
 
     // достаём все элементы полей
-    const inputList = Array.from(this._popupFormElement.querySelectorAll('.form__input'));
+    this._inputList = Array.from(this._popupFormElement.querySelectorAll('.popup__text'));
 
 
 
     // добавляем в этот объект значения всех полей
-    inputList.forEach(inputElement => formValues[inputElement.name] = inputElement.value());
+    this._inputList.forEach(inputElement => this._formValues[inputElement.name] = inputElement.value);
 
     // возвращаем объект значений
-    return formValues;
+    return this._formValues;
   }
 
   setEventListeners() {
