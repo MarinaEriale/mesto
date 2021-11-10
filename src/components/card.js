@@ -36,7 +36,7 @@ export class Card {
   }
 
   _setEventListeners() {
-    this,this._imageNode.addEventListener('click', this._handlers)
+    this._imageNode.addEventListener('click', this._handlers)
     this._likeButton.addEventListener('click', () => {
       this._toggleLike();
     });
