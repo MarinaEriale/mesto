@@ -9,7 +9,14 @@ import { UserInfo } from "../components/UserInfo.js";
 
 import {
   initialCardsReversed,
-  config
+  config,
+  containerSelector,
+  nameInput,
+  jobInput,
+  inputNameProfile,
+  inputProfession,
+  openAddPopupButton,
+  openPopupButton
 }  from "../utils/components.js"
 
 
@@ -17,56 +24,39 @@ const validatedProfileForm = new FormValidator(config, document.querySelector('#
 
 const validatedAddForm = new FormValidator(config, document.querySelector('#place-info'));
 
-const containerSelector = '#elements-container';
-
-const nameInput = document.querySelector(".popup__text_type_name");
-const jobInput = document.querySelector(".popup__text_type_profession");
-
-const nameProfile = document.querySelector(".profile__name");
-const jobProfile = document.querySelector(".profile__profession");
-
 const cardList = new Section({
   items: initialCardsReversed,
   renderer: (element) => {
     cardList.addItem(createCard(element));
-
   }
 },
 containerSelector
 );
-const popupImage = document.querySelector('.popup_type_place')
 
-const imagePopup = new PopupWithImage(popupImage);
-
-
-const inputNameProfile = document.querySelector('.profile__name')
-const inputProfession = document.querySelector('.profile__profession')
 const userInfo = new UserInfo(inputNameProfile, inputProfession);
 
-const profilePopup = document.querySelector('.popup_type_profile')
-
-const userInfoPopup = new PopupWithForm(profilePopup, (data) => {
+const userInfoPopup = new PopupWithForm('.popup_type_profile', (data) => {
   userInfo.setUserInfo(data);
 });
 
-
-const popupType = document.querySelector('.popup_type_add');
-
-const newCardPopup = new PopupWithForm(popupType, (formValues) => {
-    createCard(formValues);
-    cardList.addItem(cardElement);
+const newCardPopup = new PopupWithForm('.popup_type_add', (formValues) => {
+    cardList.addItem(createCard(formValues));
   }
 );
 
+
+const imagePopup = new PopupWithImage('.popup_type_place');
+
 function createCard(element) {
-  const card = new Card(element, {
+  const card = new Card("elements-template",
+    element, {
     handlers: () => {
       imagePopup.open(element.name, element.link)
     }
   });
   const cardElement = card.generateCard();
   return cardElement;
-}
+};
 
 cardList.renderItems();
 
@@ -78,32 +68,14 @@ imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
 newCardPopup.setEventListeners();
 
-const openAddPopupButton = document.getElementById("profile__add-button");
-const closeAddPopupButton = document.getElementById("popup__type_add-close");
-
-const closeImagePopupButton = document.getElementById("popup_type_place-close");
-
 openAddPopupButton.addEventListener('click', () => {
+  validatedAddForm.resetValidation();
   newCardPopup.open();
 });
 
-closeAddPopupButton.addEventListener('click', () => {
-  newCardPopup.close();
-});
-
-const openPopupButton = document.querySelector(".profile__open-popup");
-const closePopupButton = document.getElementById('popup_profile_close-button');
-
 openPopupButton.addEventListener('click', () => {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.profession;
   userInfoPopup.open();
-})
-
-closePopupButton.addEventListener('click', () => {
-  userInfoPopup.close();
-})
-
-closeImagePopupButton.addEventListener('click', () => {
-  imagePopup.close();
-})
+});

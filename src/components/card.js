@@ -1,6 +1,6 @@
 export class Card {
-  constructor(options, {handlers}) {
-    this._rootNode = document.getElementById("elements-template").content.cloneNode(true);
+  constructor(id, options, {handlers}) {
+    this._rootNode = document.getElementById(id).content.cloneNode(true);
     this._nameNode = this._rootNode.querySelector('.element__text');
     this._imageNode = this._rootNode.querySelector('.element__image');
     this._likeButton = this._rootNode.querySelector('.element__like-button');
