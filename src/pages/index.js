@@ -50,7 +50,7 @@ const imagePopup = new PopupWithImage('.popup_type_place');
 function createCard(element) {
   const card = new Card("elements-template",
     element, {
-    handlers: () => {
+      handleCardClick: () => {
       imagePopup.open(element.name, element.link)
     }
   });

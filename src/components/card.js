@@ -1,12 +1,12 @@
 export class Card {
-  constructor(id, options, {handlers}) {
+  constructor(id, options, {handleCardClick}) {
     this._rootNode = document.getElementById(id).content.cloneNode(true);
     this._nameNode = this._rootNode.querySelector('.element__text');
     this._imageNode = this._rootNode.querySelector('.element__image');
     this._likeButton = this._rootNode.querySelector('.element__like-button');
     this._deleteButton = this._rootNode.querySelector('.element__delete-button');
     this._elementNode = this._rootNode.querySelector('.element');
-    this._handlers = handlers
+    this._handleCardClick = handleCardClick;
 
     this._setName(options.name);
     this._setLink(options.link);
@@ -36,7 +36,7 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._imageNode.addEventListener('click', this._handlers)
+    this._imageNode.addEventListener('click', this._handleCardClick)
     this._likeButton.addEventListener('click', () => {
       this._toggleLike();
     });
