@@ -1,20 +1,18 @@
 export class UserInfo {
-  constructor(name, profession) {
+  constructor(name, about) {
     this._name = name;
-    this._profession = profession;
+    this._about = about;
   }
 
   getUserInfo() {
     return {
       name: this._name.textContent,
-      profession: this._profession.textContent
+      about: this._about.textContent
     }
   }
 
   setUserInfo(userInfoPopup) {
     this._name.textContent = userInfoPopup.name;
-    this._profession.textContent = userInfoPopup.profession
-
+    this._about.textContent = userInfoPopup.about;
   }
-
 }
