@@ -1,0 +1,18 @@
+.profile__avatar-edit {
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color .1s ease-in-out;
+
+}
+
+.profile__avatar-edit:hover {
+  background-color: rgba(0, 0, 0, .8);
+  background-image: url('../../../image/Vector_pencil.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}

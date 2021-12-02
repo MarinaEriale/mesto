@@ -41,8 +41,10 @@ export const containerSelector = '#elements-container';
 export const nameInput = document.querySelector(".popup__text_type_name");
 export const jobInput = document.querySelector(".popup__text_type_profession");
 
-export const inputNameProfile = document.querySelector('.profile__name')
-export const inputProfession = document.querySelector('.profile__profession')
+export const userNameElement = document.querySelector('.profile__name');
+export const userAboutElement = document.querySelector('.profile__profession');
+export const userAvatarElement = document.querySelector('.profile__avatar');
+
 
 export const openAddPopupButton = document.getElementById("profile__add-button");
 
