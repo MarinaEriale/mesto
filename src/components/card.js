@@ -35,6 +35,8 @@ export class Card {
   }
 
   generateCard() {
+    this._updateLike();
+    this._likesQuantity.textContent = this._likes.length;
     return this._rootNode;
   }
 
