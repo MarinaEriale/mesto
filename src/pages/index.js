@@ -112,11 +112,13 @@ openPopupButton.addEventListener('click', () => {
 const userInfoPopup = new PopupWithForm('.popup_type_profile', (data) => {
     userInfoPopup.renderLoading(true);
     api.editUserInfo(data)
-      .then(() => userInfo.setUserInfo(data))
+      .then(() => {
+        userInfo.setUserInfo(data);
+        userInfoPopup.close();
+      })
       .catch((err) => console.log('Ошибка', err))
       .finally(() => {
         userInfoPopup.renderLoading(false);
-        userInfoPopup.close();
       })
     }
 
@@ -130,13 +132,12 @@ const newCardPopup = new PopupWithForm('.popup_type_add', (formValues) => {
       //  console.log(res);
        const addedCard = createCard(res);
        cardList.addItem(addedCard);
+       newCardPopup.close();
     })
-     .catch((err) => console.log('Ошибка', err))
-     .finally(() => {
-      newCardPopup.renderLoading(false);
-      newCardPopup.close();
-     })
-
+    .catch((err) => console.log('Ошибка', err))
+    .finally(() => {
+     newCardPopup.renderLoading(false);
+    })
   }
 );
 
@@ -147,11 +148,17 @@ editAvatarButton.addEventListener('click', () => {
 })
 
 const newAvatarPopup = new PopupWithForm('.popup_type_avatar', ({link}) => {
-  console.log(link);
+  newAvatarPopup.renderLoading(true);
+  // console.log(link);
   api.editAvatar(link)
-    .then((userData) => userInfo.setUserAvatar(userData))
+    .then((userData) => {
+      userInfo.setUserAvatar(userData);
+      newAvatarPopup.close();
+    })
     .catch((err) => console.log('Ошибка', err))
-    .finally(() => newAvatarPopup.close())
+    .finally(() => {
+      newAvatarPopup.renderLoading(false);
+    })
 });
 
 newAvatarPopup.setEventListeners();
